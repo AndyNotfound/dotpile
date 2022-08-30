@@ -1,0 +1,98 @@
+###################
+# Window settings #
+###################
+window:
+  # Dimensions
+  dimensions:
+    colums: 82
+    lines: 24
+
+  # Paddings
+  padding:
+    x: 15
+    y: 15
+
+  # History
+  history: 10000
+  multiplier: 3
+  
+  # Opacity
+  opacity: 1
+
+
+#################
+# Font settings #
+#################
+font:
+
+  # Normal (roman) font face
+  normal:
+    family: "Hack Nerd Font"
+    #style: Regular
+
+  # Bold font face
+  bold:
+    family: "Hack Nerd Font"
+    #style: Bold
+
+  # Italic font face
+  italic:
+    family: "Hack Nerd Font"
+    #style: Italic
+
+  # Bold italic font face
+  bold_italic:
+    family: "Hack Nerd Font"
+    #style: Bold Italic
+
+  #Size
+  size: 6.5
+
+
+###################
+# Cursor settings #
+###################
+cursor:
+  style:
+    # Shape Beam = |
+    shape: Beam
+    # Cursor blinking
+    blinking: On
+  
+  # Blinking interval
+  blink_interval: 500
+
+
+########################################
+#              Color scheme            #
+#     I'm using Nord color scheme      #
+########################################
+colors:
+  # Primary colors
+  primary:
+    foreground: "#dee3ec"
+    #background: "#2c3240"
+    #background: "#0F111A"
+    background: "#0b0e14"
+
+  # Normal colors
+  normal:
+    black:   '#2c3240'
+    red:     '#c50f1f'
+    green:   '#92b279'
+    yellow:  '#c19c00'
+    blue:    '#6e8fb3'
+    magenta: '#881798'
+    cyan:    '#76b3c5'
+    white:   '#cccccc'
+
+  # Bright colors
+  bright:
+    black:   '#3b4356'
+    red:     '#af4b57'
+    green:   '#92b279'
+    yellow:  '#e5c078'
+    blue:    '#6e8fb3'
+    magenta: '#a3799d'
+    cyan:    '#7daeac'
+    white:   '#e7eaf1'
