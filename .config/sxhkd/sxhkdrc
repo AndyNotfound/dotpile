@@ -1,0 +1,186 @@
+#############################################
+# Application shortcut keys, I'm lazy okay? #
+#############################################
+
+# Alacritty
+super + Return
+	alacritty
+
+# Rofi (replacement for dmenu)
+super + @space
+	rofi -show drun
+
+# Brave browser
+super + shift + {b}
+	brave-browser-nightly
+
+# Qutebrowser
+super + shift + {q}
+	qutebrowser
+
+# Neovim
+super + shift + {n}
+	neovim
+
+# Thunar file manager
+super + shift + {t}
+	thunar
+
+###################
+# Power and stuff #
+###################
+
+# Shutdown
+super + ctrl + s
+        shutdown now
+
+# Reboot
+super + ctrl + r
+	reboot
+
+# Logout
+super + ctrl + l
+	bspc quit
+
+#############################################
+# Config for unsupported key out of the box #
+#############################################
+
+# Speaker mute
+XF86AudioMute
+	pactl set-sink-mute 0 toggle
+
+# Microphone Mute
+XF86AudioMicMute
+	# Didn't have any app to test so I just paste the line above
+	pactl set-sink-mute 0 toggle
+
+# Raising and lowering volume
+XF86Audio{RaiseVolume,LowerVolume}
+	amixer -c 1 -q set Master {5+,5-} unmute
+
+# Raising and lowering scree brightness
+XF86MonBrightness{Up,Down}
+	light -s sysfs/backlight/amdgpu_bl0 {-A,-U} 5
+
+# Take Screenshots and store it inside Pictures dir
+Print
+	cd Pictures && shotgun
+
+
+##################################
+# Reloading sxkd and bspwm thing #
+##################################
+
+# kill sxhkd to reload its configuration
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# quit or restart bspwm
+super + alt + {r}
+	bspc wm -r
+
+
+###########################
+# Windows management shit #
+###########################
+
+# close and kill focused window
+super + {_,shift + }w
+	bspc node -{c,k}
+
+# swap the current node and the biggest window
+super + g
+	bspc node -s biggest.window
+
+
+####################################
+# Windows state and flags controls #
+####################################
+
+# set the window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+
+#########################################
+# Focusing and swapping between windows #
+#########################################
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the last window
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# send focused window to the given workspace
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+
+#########################
+# Preselection of space #
+#########################
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+
+##############################
+# Moving and resizing window #
+##############################
+
+# expand a window by moving one of its side outward
+super + alt + {Left,Down,Up,Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + shift + {Left,Down,Up,Right}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+
+##########################################################
+# Some shit I don't know what for but it seems important #
+#       I get this shit from the examples config         #
+##########################################################
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+        bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous window in the current desktop
+super + {_,shift + }c
+        bspc node -f {next,prev}.local.!hidden.window
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+        bspc desktop -f {prev,next}.local
+
+# focus the older or newer node in the focus history
+super + {o,i}
+        bspc wm -h off; \
+        bspc node {older,newer} -f; \
+        bspc wm -h on
