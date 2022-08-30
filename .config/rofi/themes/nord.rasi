@@ -1,0 +1,104 @@
+/*----------------*/
+/* Configuration */
+/*--------------*/
+configuration{
+    drun-display-format: "{icon} {name}";
+    display-drun: "ﮊ  Apps"; 
+}
+
+
+/*-------------------------------------------------*/
+/* Universal styling, delaring the variables, etc */
+/*-----------------------------------------------*/
+* {
+    font:   "Hack Nerd Font 10";
+    dark:	#0B0E14;
+    main:	#544E74;
+    light:	#DEE3EC;
+    background-color:   transparent;
+    text-color:         @light;
+    margin:     0px;
+    padding:    0px;
+    spacing:    0px;
+}
+
+
+/*------------------------*/
+/* Styling of the window */
+/*----------------------*/
+window {
+    background-color:   @dark;
+    border-color:       @light;
+    border-radius: 5px;
+    location:   center;
+    width:      580px;
+    y-offset:   0px;
+    border:     1px;
+    padding: 10px 10px;
+}
+
+
+/*--------------------------------------------------------------*/
+/* Menu bar header (Like the Apps {skull} and the input field) */
+/*------------------------------------------------------------*/
+inputbar {
+    padding:    20px 12px;
+    spacing:    30px;
+    children:   [ prompt, entry ];
+}
+prompt, entry, element-text, element-icon {
+    vertical-align: 0.5;
+}
+entry {
+    text-color: @light;
+}
+prompt {
+    background-color: @main;
+    padding: 12px 20px;
+    border-radius: 5px;
+    text-color: @light;
+}
+
+
+/*-----------------------------*/
+/* List of things in the menu */
+/*---------------------------*/
+listview {
+    /* making it a list of 2 columns and 8 rows */
+    lines:      8;
+    columns:    2;
+    fixed-height:   false;
+}
+element {
+    padding:    12px;
+    spacing:    8px;
+}
+	    /*-----------------------------------------------------------------*/
+	   /* Note : urgent (is app that has an urgent stuff going on         */
+	  /*         normal (your normal apps, not highlighted)              */
+	 /*          selected (the one you're hovering on, it's higlighted) */
+	/*-----------------------------------------------------------------*/
+element normal urgent {
+    text-color: @light;
+}
+element normal active {
+    text-color: @light;
+}
+element selected {
+    text-color: @main;
+}
+element selected normal {
+    background-color:   @dark;
+}
+element selected urgent {
+    background-color:   @dark;
+}
+element selected active {
+    background-color:   @dark;
+}
+element-icon {
+    size:   25px;
+}
+element-text {
+    text-color: inherit;
+}
