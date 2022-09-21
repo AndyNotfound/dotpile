@@ -1,6 +1,6 @@
 #! /bin/sh
 
-pgrep -x sxhkd > /dev/null || sxhkd & nitrogen --restore & picom & polybar &
+pgrep -x sxhkd > /dev/null || sxhkd & nitrogen --restore & picom --experimental-backends -b & polybar &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
